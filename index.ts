@@ -8,17 +8,18 @@ const path = require('path');
 
 //main();
 
-const wss = new WebSocket.Server({ port: 6060  });
-console.log('websocket up on 6060');
+const WS_PORT = process.env.WS_PORT || 6060;
+const wss = new WebSocket.Server({ port: WS_PORT  });
+console.log('websocket up on ', WS_PORT);
 
 
 
 const app = express();
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 6080;
 app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.listen(PORT, () => {
-    console.log('express up on 6000');
+    console.log('express up on ', PORT);
 })
 
