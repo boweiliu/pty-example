@@ -24,6 +24,7 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "node-pty": "^1.0.0"
+    "node-pty": "^1.0.0",
+    "ws": "^8.16.0"
   }
 }
