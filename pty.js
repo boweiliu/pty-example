@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ptyProc = void 0;
 const node_pty_1 = require("node-pty");
 // See:
 // https://github.com/microsoft/node-pty/blob/main/typings/node-pty.d.ts
@@ -51,4 +52,5 @@ function main() {
     });
 }
 // main()
+exports.ptyProc = ptyProcess;
 exports.default = main;

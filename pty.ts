@@ -47,4 +47,5 @@ async function main() {
 
 // main()
 
+export const ptyProc = ptyProcess;
 export default main;

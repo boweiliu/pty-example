@@ -1,4 +1,4 @@
-import main from './pty';
+import main , { ptyProc as ptyProcess } from './pty';
 // https://github.com/EDDYMENS/interactive-terminal/blob/main/backend.js
 
 const WebSocket = require('ws');
@@ -13,6 +13,18 @@ const wss = new WebSocket.Server({ port: WS_PORT  });
 console.log('websocket up on ', WS_PORT);
 
 
+wss.on('connection', () => {
+    console.log('new websocket connection');
+
+    wss.on('message', (command: string) => {
+        ptyProcess.write(command);
+    })
+
+    ptyProcess.onData((rawOutput: string) => {
+        wss.send(rawOutput);
+        console.log('data', JSON.stringify(rawOutput));
+    })
+});
 
 const app = express();
 const PORT = process.env.PORT || 6080;
