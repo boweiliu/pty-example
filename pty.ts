@@ -14,7 +14,7 @@ const oldEnv = { ...process.env }
 const ptyProcess = spawn(shell, [], {
     name: 'xterm-color',
     cols: 80,
-    rows: 30,
+    rows: 18,
     cwd: process.cwd(),
     env: {...oldEnv, NO_COLOR: '1', TERM: 'xterm-mono', LS_COLORS: undefined }
 });
