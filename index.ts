@@ -13,16 +13,21 @@ const wss = new WebSocket.Server({ port: WS_PORT  });
 console.log('websocket up on ', WS_PORT);
 
 
-wss.on('connection', () => {
+wss.on('connection', (ws: WebSocket) => {
     console.log('new websocket connection');
 
-    wss.on('message', (command: string) => {
+    ws.on('message', (command: string) => {
+        console.log('got ws message', JSON.stringify(command));
         ptyProcess.write(command);
     })
 
     ptyProcess.onData((rawOutput: string) => {
-        wss.send(rawOutput);
+        ws.send(rawOutput);
         console.log('data', JSON.stringify(rawOutput));
+    })
+
+    ws.on('close', () => {
+        console.log('ws closed');
     })
 });
 

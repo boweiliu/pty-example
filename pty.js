@@ -28,7 +28,7 @@ const ptyProcess = (0, node_pty_1.spawn)(shell, [], {
 });
 ptyProcess.onData(data => {
     // console.log('data', JSON.stringify(data));
-    process.stdout.write(data);
+    // process.stdout.write(data);
 });
 ptyProcess.onExit((props) => {
     const { exitCode, signal } = props;

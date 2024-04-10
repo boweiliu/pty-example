@@ -1,6 +1,10 @@
 
 
 const socket = new WebSocket("ws://localhost:6060");
+socket.onopen = () => {
+    console.log('opened');
+    init();
+}
 socket.onmessage = (event) => {
     term.write(event.data);
 
@@ -17,6 +21,8 @@ function init() {
     }
 
     term._initialized = true;
+
+    console.log('initializing');
 
     term.prompt = () => {
         runCommand('\n');
@@ -35,4 +41,4 @@ function runCommand(command) {
 
 }
 
-init();
+// init();
