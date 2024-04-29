@@ -11,9 +11,11 @@ how:
 - [x] hook up vite to express
 - [x] copy over the express websocket code
 - [x] test the backend websocket alone
-- [ ] hook up xterm client to websocket
-- [ ] Delete extraneous vite code
-- [ ] Test end2end with a progress bar script
-- [ ] Test end2end with tmux/vim
+- [x] hook up xterm client to websocket
+- [x] Test pty with progress bar sh
+- [x] Delete extraneous vite code
+- [x] Test end2end with tmux/vim
+
+- [ ] look into https://xtermjs.org/docs/api/addons/attach/ ? 
 
 Now should have parity with the other example.
