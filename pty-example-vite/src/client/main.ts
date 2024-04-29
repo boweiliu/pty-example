@@ -4,6 +4,10 @@ import { setupCounter } from "./counter";
 import typescriptLogo from "./typescript.svg";
 import { Terminal  } from '@xterm/xterm';
 
+
+document.querySelector<HTMLDivElement>("#app")!.style.display = 'none';
+
+/*
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">
@@ -23,6 +27,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 `;
 
 setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
+*/
 
 const term = new Terminal({
     cursorBlink: true
