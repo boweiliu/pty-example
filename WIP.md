@@ -16,6 +16,8 @@ how:
 - [x] Delete extraneous vite code
 - [x] Test end2end with tmux/vim
 
+- [ ] investigate whether [esc] is being properly transmitted from xterm into pty
+  - [ ] install python3.12 in order to run pip keyboard logger
 - [ ] look into https://xtermjs.org/docs/api/addons/attach/ ? 
 
 Now should have parity with the other example.

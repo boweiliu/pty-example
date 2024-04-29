@@ -20,8 +20,8 @@ const ptyProcess = spawn(shell, [], {
 });
 
 ptyProcess.onData(data => {
-    console.log('data', JSON.stringify(data));
-    process.stdout.write(data);
+    // console.log('data', JSON.stringify(data));
+    // process.stdout.write(data);
 });
 ptyProcess.onExit((props) => {
     const { exitCode, signal } = props;
