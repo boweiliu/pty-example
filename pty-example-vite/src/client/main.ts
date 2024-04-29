@@ -24,7 +24,46 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 
 setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
 
-const term = new Terminal();
+const term = new Terminal({
+    cursorBlink: true
+});
 term.open(document.getElementById('terminal')!);
 term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ');
+
+
+const runCommand = (cmd: string) => {
+    socket.send(cmd);
+    
+};
+const runPromptCommand = () => {
+    runCommand('\n');
+};
+
+let isInitialized = false;
+const init = () => {
+    if (isInitialized) {
+        return;
+    }
+    isInitialized = true;
+    console.log('initializing');
+
+    setTimeout(() => {
+        runPromptCommand();
+    }, 300);
+
+    term.onKey(keyObj => {
+        runCommand(keyObj.key);
+    });
+};
+
+const socket = new WebSocket("ws://localhost:6060");
+socket.onopen = () => {
+    console.log('opened ws');
+    init();
+}
+
+socket.onmessage = (event) => {
+    term.write(event.data);
+}
+
 
