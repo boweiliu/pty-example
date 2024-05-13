@@ -30,10 +30,23 @@ setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
 */
 
 const term = new Terminal({
-    cursorBlink: true
+    cursorBlink: true,
+    cols: 80,
+    rows: 24,
 });
 term.open(document.getElementById('terminal')!);
 term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ');
+
+const resizeTerminal = (props: { desiredHeightPx: number, desiredLengthPx: number }) => {
+    const { desiredHeightPx, desiredLengthPx } = props;
+
+    const newNumRows = Math.floor(desiredHeightPx / 17);
+    const newNumCols = Math.floor(desiredLengthPx / 9);
+
+    term.resize(newNumCols, newNumRows);
+}
+
+setTimeout(() => resizeTerminal({ desiredHeightPx: window.innerHeight, desiredLengthPx: window.innerWidth }), 3000);
 
 
 const runCommand = (cmd: string) => {

@@ -16,8 +16,14 @@ how:
 - [x] Delete extraneous vite code
 - [x] Test end2end with tmux/vim
 
-- [ ] investigate whether [esc] is being properly transmitted from xterm into pty
-  - [ ] install python3.12 in order to run pip keyboard logger
+- [x] investigate whether [esc] is being properly transmitted from xterm into pty
+  - [x] install python3.12 in order to run pip keyboard logger
 - [ ] look into https://xtermjs.org/docs/api/addons/attach/ ? 
 
 Now should have parity with the other example.
+
+
+
+- [ ] track sessions so that 2 windows don't share the same state
+- [ ] add ability to resize windows (helps with fullscreen, and we'll need it too)
+  - [ ] use a wsocket side channel to transmit sizing and other meta information that the server side pty needs to know about as well

@@ -13,8 +13,9 @@ const sleep = (ms: number) => new Promise((res, rej) => {
 const oldEnv = { ...process.env }
 const ptyProcess = spawn(shell, [], {
     name: 'xterm-color',
+    // NOTE(bowei): courier-new monospace seems to be 9x17 per character, so scale that up
     cols: 80,
-    rows: 18,
+    rows: 24,
     cwd: process.cwd(),
     env: {...oldEnv, NO_COLOR: '1', TERM: 'xterm-mono', LS_COLORS: undefined }
 });

@@ -4,5 +4,5 @@
 
 which wscat || sudo npm install -g wscat
 
-wscat -c ws://localhost:6060
+wscat -c ws://localhost:6060/wscat/config
 
