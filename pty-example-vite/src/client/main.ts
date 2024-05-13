@@ -37,6 +37,7 @@ const term = new Terminal({
 term.open(document.getElementById('terminal')!);
 term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ');
 
+const configSocket = new WebSocket("ws://localhost:6060/demo/config");
 const resizeTerminal = (props: { desiredHeightPx: number, desiredLengthPx: number }) => {
     const { desiredHeightPx, desiredLengthPx } = props;
 
@@ -44,9 +45,10 @@ const resizeTerminal = (props: { desiredHeightPx: number, desiredLengthPx: numbe
     const newNumCols = Math.floor(desiredLengthPx / 9);
 
     term.resize(newNumCols, newNumRows);
+    configSocket.send(JSON.stringify({ cmd: 'resize', rows: newNumRows, cols: newNumCols }));
 }
 
-setTimeout(() => resizeTerminal({ desiredHeightPx: window.innerHeight, desiredLengthPx: window.innerWidth }), 3000);
+setTimeout(() => resizeTerminal({ desiredHeightPx: window.innerHeight, desiredLengthPx: window.innerWidth }), 5000);
 
 
 const runCommand = (cmd: string) => {

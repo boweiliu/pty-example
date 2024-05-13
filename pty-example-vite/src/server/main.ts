@@ -29,11 +29,29 @@ wss.on('connection', (ws: WebSocket, req: IncomingMessage) => {
             console.log('data', JSON.stringify(rawOutput))
         })
     }
+    else if (wsConnectionType === 'config') {
+        ws.on('message', (jsonData: string /* actually json */) => {
+            const dataObject = jsonParseOrNull(jsonData);
+            console.log('got ws config message', dataObject);
+            // process it...
+            const resizeCmd = dataObject as { rows: number, cols: number };
+            ptyProcess.resize(resizeCmd.cols, resizeCmd.rows);
+            console.log('resized to ' , resizeCmd);
+        });
+    }
 
     ws.on('close', () => {
         console.log('ws closed');
     });
 })
+
+function jsonParseOrNull(d: string): Object | undefined {
+    try {
+        return JSON.parse(d);
+    } catch (e) {
+        return undefined;
+    }
+}
 
 
 // app.get("/hello", (_, res) => {
